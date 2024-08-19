@@ -1,0 +1,54 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+
+Table user {
+  id int [pk, increment]
+  username varchar
+  email varchar
+  password varchar
+}
+
+Table  profil {
+  id int [pk, increment]
+  user_id int [ref: > user.id]
+  umur varchar
+  bio  text
+  alamat varchar
+}
+
+
+Table cast {
+  id int [pk, increment]
+  nama varchar
+  umur varchar
+  bio text
+}
+
+
+Table film{
+ id int [pk, increment]
+ judul varchar
+ ringkasan varchar
+ tahun  int
+ poster varchar
+ genre_id int [ref: > genre.id]
+}
+
+Table genre {
+  id  int [pk, increment]
+  nama varchar
+}
+ 
+Table ulasan {
+  id int [pk, increment]
+  user_id int [ref: > user.id]
+  film_id int [ref: > film.id]
+}
+
+Table movie_cast {
+  film_id int [ref: > film.id]
+  cast_id int [ref: > cast.id ]
+  peran varchar
+  primary key (film_id, cast_id)
+}
